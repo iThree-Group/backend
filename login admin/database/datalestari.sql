@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2024 at 07:05 AM
+-- Generation Time: Nov 23, 2024 at 04:16 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -79,6 +79,27 @@ CREATE TABLE `aktivitas2` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `id` int NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`id`, `email`, `token`, `created_at`) VALUES
+(1, 'admin@lestari.com', '4ce4e3cd112f445c2cd3e4d46ab8accaac07167f3d2fc6b60ddae6a526e14452', '2024-11-23 22:00:05'),
+(2, 'admin@lestari.com', 'be6b08bb70c30031b81fe493e58487dcb5c30205bd0b53ba812b8f778de35462', '2024-11-23 22:01:41');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pengantar`
 --
 
@@ -111,26 +132,6 @@ INSERT INTO `sampah` (`id`, `berat_kg`, `tanggal`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sampah1`
---
-
-CREATE TABLE `sampah1` (
-  `id` int NOT NULL,
-  `jenis_sampah` varchar(50) DEFAULT NULL,
-  `berat_kg` float DEFAULT NULL,
-  `tanggal` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `sampah1`
---
-
-INSERT INTO `sampah1` (`id`, `jenis_sampah`, `berat_kg`, `tanggal`) VALUES
-(1, 'Plastik', 4, '2024-11-20');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -148,32 +149,6 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `nama`, `status_aktif`, `poin`) VALUES
 (1, 'Ahmad Sudrajat', 1, 10),
 (2, 'Cut Nyak Gem', 1, 15);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users12`
---
-
-CREATE TABLE `users12` (
-  `id` int NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `phone` varchar(15) DEFAULT NULL,
-  `reset_token` varchar(255) DEFAULT NULL,
-  `reset_expires` datetime DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `users12`
---
-
-INSERT INTO `users12` (`id`, `name`, `email`, `password`, `address`, `phone`, `reset_token`, `reset_expires`, `created_at`) VALUES
-(1, 'Tes User', 'tesuser@gmail.com', '$2y$10$VD2xMCakLGx/aLwtnVUqL.OR6uI1Rrf5jsAxmMOqk/NNnTJicAxn6', 'Jl. Rajawali No54', '083122892583', NULL, NULL, '2024-11-19 05:12:44'),
-(2, 'User Test ', 'usertest@gmail.com', '$2y$10$nKNxjy9VDJ/i9l1uyNFaYOk2EzaOLaUgg5UkzuFm/y8MjFsNmlJuq', 'Jl. Raya Barat No.22', '083125865994', NULL, NULL, '2024-11-19 05:43:46');
 
 --
 -- Indexes for dumped tables
@@ -199,6 +174,12 @@ ALTER TABLE `aktivitas2`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pengantar`
 --
 ALTER TABLE `pengantar`
@@ -211,23 +192,10 @@ ALTER TABLE `sampah`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sampah1`
---
-ALTER TABLE `sampah1`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users12`
---
-ALTER TABLE `users12`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -252,6 +220,12 @@ ALTER TABLE `aktivitas2`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `pengantar`
 --
 ALTER TABLE `pengantar`
@@ -264,21 +238,9 @@ ALTER TABLE `sampah`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `sampah1`
---
-ALTER TABLE `sampah1`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `users12`
---
-ALTER TABLE `users12`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2024 at 04:16 PM
+-- Generation Time: Nov 25, 2024 at 03:15 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `email`, `password`) VALUES
-(1, 'admintp1@gmail.com', 'TP1Admin'),
+(1, 'admin@gmail.com', 'TP1Admin'),
 (2, 'admin@lestari.com', 'Lestari123');
 
 -- --------------------------------------------------------
@@ -100,6 +100,28 @@ INSERT INTO `password_resets` (`id`, `email`, `token`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `penerimaan_sampah`
+--
+
+CREATE TABLE `penerimaan_sampah` (
+  `id` int NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `jenis_sampah` varchar(50) NOT NULL,
+  `kategori_detail` varchar(50) NOT NULL,
+  `berat` float NOT NULL,
+  `tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `penerimaan_sampah`
+--
+
+INSERT INTO `penerimaan_sampah` (`id`, `email`, `jenis_sampah`, `kategori_detail`, `berat`, `tanggal`) VALUES
+(1, 'fatma12@gmail.com', 'Plastik', 'Botol Plastik', 5, '2024-11-25 14:56:39');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pengantar`
 --
 
@@ -128,6 +150,29 @@ CREATE TABLE `sampah` (
 INSERT INTO `sampah` (`id`, `berat_kg`, `tanggal`) VALUES
 (1, 2000, '2024-11-23 12:15:43'),
 (2, 547, '2024-11-23 12:34:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status_penerimaan_sampah`
+--
+
+CREATE TABLE `status_penerimaan_sampah` (
+  `id` int NOT NULL,
+  `tanggal` date NOT NULL,
+  `nama_user` varchar(255) NOT NULL,
+  `jenis_sampah` varchar(100) DEFAULT NULL,
+  `berat` float DEFAULT NULL,
+  `status` enum('menunggu','selesai','ditolak') DEFAULT 'menunggu',
+  `poin` int DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `status_penerimaan_sampah`
+--
+
+INSERT INTO `status_penerimaan_sampah` (`id`, `tanggal`, `nama_user`, `jenis_sampah`, `berat`, `status`, `poin`) VALUES
+(1, '2024-11-10', 'Ahmad Sudrajat', 'Plastik', 5, 'selesai', 50);
 
 -- --------------------------------------------------------
 
@@ -180,6 +225,12 @@ ALTER TABLE `password_resets`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `penerimaan_sampah`
+--
+ALTER TABLE `penerimaan_sampah`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pengantar`
 --
 ALTER TABLE `pengantar`
@@ -189,6 +240,12 @@ ALTER TABLE `pengantar`
 -- Indexes for table `sampah`
 --
 ALTER TABLE `sampah`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `status_penerimaan_sampah`
+--
+ALTER TABLE `status_penerimaan_sampah`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -226,6 +283,12 @@ ALTER TABLE `password_resets`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `penerimaan_sampah`
+--
+ALTER TABLE `penerimaan_sampah`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `pengantar`
 --
 ALTER TABLE `pengantar`
@@ -236,6 +299,12 @@ ALTER TABLE `pengantar`
 --
 ALTER TABLE `sampah`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `status_penerimaan_sampah`
+--
+ALTER TABLE `status_penerimaan_sampah`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
